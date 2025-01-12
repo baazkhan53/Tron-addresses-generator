@@ -1,0 +1,24 @@
+name: Generate TRON Address
+
+on:
+  workflow_dispatch:  # Allows manual execution from the Actions tab
+
+jobs:
+  tron-address-generation:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.8'
+
+    - name: Install dependencies
+      run: |
+        pip install ecdsa base58 colorama tronapi pycryptodome==3.4.3
+
+    - name: Run TRX Check Script
+      run: python3 trxCheck.py
