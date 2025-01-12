@@ -1,24 +1,23 @@
-name: Generate TRON Address
+name: TRON Vanity Address Generator
 
 on:
-  workflow_dispatch:  # Allows manual execution from the Actions tab
+  workflow_dispatch:
 
 jobs:
-  tron-address-generation:
+  generate_tron_address:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.8'
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
 
-    - name: Install dependencies
-      run: |
-        pip install ecdsa base58 colorama tronapi pycryptodome==3.4.3
-
-    - name: Run TRX Check Script
-      run: python3 trxCheck.py
+      - name: Install dependencies
+        run: |
+          pip install ecdsa base58
+      
+      - name: Run TRX address generator
+        run: python trxCheck.py
